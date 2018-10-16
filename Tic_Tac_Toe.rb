@@ -1,3 +1,7 @@
+# tic_tac_toe
+
+require "awesome_print"
+
 class Board 
 	def initialize
 	  @@array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -36,15 +40,14 @@ class Game < Board
   def go 
     # TO DO : lance la partie
     puts "Joueur 1 écrit ton nom"
-    @player1 = Player.new(gets.chomp, "X")
+    @player1 = Player.new(gets.chomp, "X".blue)
     puts "#{@player1.name} Tu joue la #{@player1.player_value}" 
     puts "Joueur 2 écrit ton nom"
-    @player2 = Player.new(gets.chomp, "O")
+    @player2 = Player.new(gets.chomp, "O".red)
     puts "#{@player2.name} Tu joue le #{@player2.player_value}"
   end
 
   def win_condition
-
 	  return true if @@array[1] == @@array[2] && @@array[2] == @@array[3]
 	  return true if @@array[4] == @@array[5] && @@array[5] == @@array[6]
 	  return true if @@array[7] == @@array[8] && @@array[8] == @@array[9]
@@ -53,7 +56,6 @@ class Game < Board
 	  return true if @@array[3] == @@array[6] && @@array[6] == @@array[9]
 	  return true if @@array[1] == @@array[5] && @@array[5] == @@array[9]
 	  return true if @@array[3] == @@array[5] && @@array[5] == @@array[7]
-	  	
   end
 
   def turn
@@ -63,7 +65,7 @@ class Game < Board
     puts "tour de #{@player1.name}"
 
     i = gets.chomp
-    @@array[i.to_i] = "X"
+    @@array[i.to_i] = "X".blue
 
     puts top_top = "     |     |     "
     puts top_middle = "  #{@@array[1]}  |  #{@@array[2]}  |  #{@@array[3]}  "
@@ -80,7 +82,7 @@ class Game < Board
     i = 0
     puts "Tour de #{@player2.name}"
     i = gets.chomp
-    @@array[i.to_i] = "O"
+    @@array[i.to_i] = "O".red
 
     puts top_top = "     |     |     "
     puts top_middle = "  #{@@array[1]}  |  #{@@array[2]}  |  #{@@array[3]}  "
@@ -98,8 +100,13 @@ class Game < Board
   end
 end
 
+def perform
+  game = Game.new
+  game.go
+  Board.new.initial_board
+  game.turn
+  puts "voulez-vous rejouer ? (Y/N)"
+  return perform if gets.chomp == "Y"
+end
 
-game = Game.new
-game.go
-Board.new.initial_board
-game.turn
+perform
