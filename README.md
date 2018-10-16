@@ -13,12 +13,12 @@ Avant de lancer le programme, veillez à bien faire un "bundle install" pour le 
 ✅ = réussi
 ❗️ = non fait
 
-✅ est à deux joueurs
-✅ commence en demandant le prénom des joueurs
-✅ affiche le plateau à chaque tour, puis demande au joueur auquel c'est le tour de jouer
-✅ si un joueur gagne, le programme annonce qui a gagné
-❗️ s'il y a match nul, le programme annonce qu'il y a match nul
-✅ à la fin d'une partie, le programme propose une autre partie
-✅ les X et O sont en couleur
+✅ est à deux joueurs<br>
+✅ commence en demandant le prénom des joueurs<br>
+✅ affiche le plateau à chaque tour, puis demande au joueur auquel c'est le tour de jouer<br>
+✅ si un joueur gagne, le programme annonce qui a gagné<br>
+❗️ s'il y a match nul, le programme annonce qu'il y a match nul<br>
+✅ à la fin d'une partie, le programme propose une autre partie<br>
+✅ les X et O sont en couleur<br>
 
 Il y a un petit probleme, si un joueur joue par dessus le choix de l'autre, cela ne renvoie pas d'erreur.
