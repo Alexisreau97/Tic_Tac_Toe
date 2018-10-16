@@ -4,7 +4,7 @@
 
 Ci présent dans ce repo, un incroyable tic tac toe réalisé par Alexis Réau et Florian Pinto !
 
-## <style color: red>INSTRUCTION</style> !
+## INSTRUCTION !
 
 Avant de lancer le programme, veillez à bien faire un "bundle install" pour le bon fonctionnement du programme.
 
