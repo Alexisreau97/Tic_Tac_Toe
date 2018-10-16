@@ -10,8 +10,8 @@ Avant de lancer le programme, veillez à bien faire un "bundle install" pour le 
 
 ## Le programme :
 
-✅ = réussi
-❗️ = non fait
+✅ = réussi<br>
+❗️ = non fait<br>
 
 ✅ est à deux joueurs<br>
 ✅ commence en demandant le prénom des joueurs<br>
