@@ -1,3 +1,21 @@
+class Board 
+	def initialize
+	  @@array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+	end
+
+	def initial_board
+	  puts top_top = "     |     |     "
+      puts top_middle = "  #{@@array[1]}  |  #{@@array[2]}  |  #{@@array[3]}  "
+      puts top_bottom = "_____|_____|_____"
+      puts middle_top = "     |     |     "
+      puts middle_middle = "  #{@@array[4]}  |  #{@@array[5]}  |  #{@@array[6]}  "
+      puts middle_bottom =  "_____|_____|_____"
+      puts bottom_top = "     |     |     "
+      puts bottom_middle = "  #{@@array[7]}  |  #{@@array[8]}  |  #{@@array[9]}  "
+      puts bottom_bottom = "     |     |     "
+	end
+end
+
 class Player
   attr_accessor :name, :player_value
   attr_writer :win
@@ -10,10 +28,10 @@ class Player
 
 end
 
-class Game
+class Game < Board
   def initialize
   #TO DO : créé 2 joueurs, créé un board
-  @array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  @@array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]   
   end
 
   def go
@@ -27,48 +45,56 @@ class Game
     
   end
 
+  def win_condition
+
+	  return true if @@array[1] == @@array[2] && @@array[2] == @@array[3]
+	  return true if @@array[4] == @@array[5] && @@array[5] == @@array[6]
+	  return true if @@array[7] == @@array[8] && @@array[8] == @@array[9]
+	  return true if @@array[1] == @@array[4] && @@array[4] == @@array[7]
+	  return true if @@array[2] == @@array[5] && @@array[5] == @@array[8]
+	  return true if @@array[3] == @@array[6] && @@array[6] == @@array[9]
+	  return true if @@array[1] == @@array[5] && @@array[5] == @@array[9]
+	  return true if @@array[3] == @@array[5] && @@array[5] == @@array[7]
+	  	
+  end
+
   def turn
   #TO DO : affiche le plateau, demande au joueur il joue quoi, vérifie si un joueur a gagné, passe au joueur suivant si la partie n'est pas finie
+
     i = 0
-
-    if @array[1] == "X" && @array[2] == "X"
-      return puts "win"
-    end
-
     puts "tour du joueur 1"
 
     i = gets.chomp
-    @array[i.to_i] = "X"
+    @@array[i.to_i] = "X"
 
     puts top_top = "     |     |     "
-    puts top_middle = "  #{@array[1]}  |  #{@array[2]}  |  #{@array[3]}  "
+    puts top_middle = "  #{@@array[1]}  |  #{@@array[2]}  |  #{@@array[3]}  "
     puts top_bottom = "_____|_____|_____"
     puts middle_top = "     |     |     "
-    puts middle_middle = "  #{@array[4]}  |  #{@array[5]}  |  #{@array[6]}  "
+    puts middle_middle = "  #{@@array[4]}  |  #{@@array[5]}  |  #{@@array[6]}  "
     puts middle_bottom =  "_____|_____|_____"
     puts bottom_top = "     |     |     "
-    puts bottom_middle = "  #{@array[7]}  |  #{@array[8]}  |  #{@array[9]}  "
+    puts bottom_middle = "  #{@@array[7]}  |  #{@@array[8]}  |  #{@@array[9]}  "
     puts bottom_bottom = "     |     |     "
 
-    if @array[1] == "X" && @array[2] == "X"  
-      return puts "win"
-    end
-
+	return puts "p2" if win_condition == true
 
     i = 0
     puts "Tour du joueur 2"
     i = gets.chomp
-    @array[i.to_i] = "O"
+    @@array[i.to_i] = "O"
 
     puts top_top = "     |     |     "
-    puts top_middle = "  #{@array[1]}  |  #{@array[2]}  |  #{@array[3]}  "
+    puts top_middle = "  #{@@array[1]}  |  #{@@array[2]}  |  #{@@array[3]}  "
     puts top_bottom = "_____|_____|_____"
     puts middle_top = "     |     |     "
-    puts middle_middle = "  #{@array[4]}  |  #{@array[5]}  |  #{@array[6]}  "
+    puts middle_middle = "  #{@@array[4]}  |  #{@@array[5]}  |  #{@@array[6]}  "
     puts middle_bottom =  "_____|_____|_____"
     puts bottom_top = "     |     |     "
-    puts bottom_middle = "  #{@array[7]}  |  #{@array[8]}  |  #{@array[9]}  "
+    puts bottom_middle = "  #{@@array[7]}  |  #{@@array[8]}  |  #{@@array[9]}  "
     puts bottom_bottom = "     |     |     "
+
+    return puts "p1" if win_condition == true
 
     turn
   end
@@ -76,5 +102,5 @@ end
 
 
 Game.new.go
-Board.new
+Board.new.initial_board
 Game.new.turn
