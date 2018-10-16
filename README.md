@@ -1,6 +1,6 @@
 # Tic_Tac_Toe
 
-## réalisation d'un tic tac toe
+## Réalisation d'un tic tac toe
 
 Ci présent dans ce repo, un incroyable tic tac toe réalisé par Alexis Réau et Florian Pinto !
 
@@ -8,7 +8,7 @@ Ci présent dans ce repo, un incroyable tic tac toe réalisé par Alexis Réau e
 
 Avant de lancer le programme, veillez à bien faire un "bundle install" pour le bon fonctionnement du programme.
 
-# Le programme :
+## Le programme :
 
 ✅ = réussi
 ❗️ = non fait
