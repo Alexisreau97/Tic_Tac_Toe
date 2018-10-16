@@ -1,12 +1,16 @@
 # tic_tac_toe
 
+# Ajout de la Gem awesome_print qui permet d'ajouter des couleurs à un élément affiché.
 require 'awesome_print'
 
 class Board
+  # Ici redéclare ici l'array pour pouvoir l'utiliser dans cette class.
   def initialize
+    # (le 0 permet de considérer la première case comme l'élément 1 de l'array).
     @@array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
   end
 
+  # Cette méthode permet d'afficher le plateau initial.
   def initial_board
     puts top_top = '     |     |     '
     puts top_middle = "  #{@@array[1]}  |  #{@@array[2]}  |  #{@@array[3]}  "
@@ -32,16 +36,18 @@ class Player
 end
 
 class Game < Board
+  # On déclare l'array qui contient les numéros de case du tic tac toe.
   def initialize
-    # TO DO : créé 2 joueurs, créé un board
+    # (le 0 permet de considérer la première case comme l'élément 1 de l'array).
     @@array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
   end
 
   def go
-    # TO DO : lance la partie
+    # Création de joueurs via les instances @player1 et @player2.
     puts 'Joueur 1 écrit ton nom'
     print '> '
     @player1 = Player.new(gets.chomp, 'X'.blue)
+    # Affiche les noms des joueurs et leur symbole.
     puts "#{@player1.name} Tu joue la #{@player1.player_value}"
     puts 'Joueur 2 écrit ton nom'
     print '> '
@@ -49,6 +55,7 @@ class Game < Board
     puts "#{@player2.name} Tu joue le #{@player2.player_value}"
   end
 
+  # La méthode win_condition contient toutes les conditions de victoire.
   def win_condition
     return true if @@array[1] == @@array[2] && @@array[2] == @@array[3]
     return true if @@array[4] == @@array[5] && @@array[5] == @@array[6]
@@ -60,17 +67,14 @@ class Game < Board
     return true if @@array[3] == @@array[5] && @@array[5] == @@array[7]
   end
 
-  def equality_condition
-    
-  end
-
+  # C'est ici que tout se passe.
   def turn
-    # TO DO : affiche le plateau, demande au joueur il joue quoi, vérifie si un joueur a gagné, passe au joueur suivant si la partie n'est pas finie
-
     i = 0
+    # On demande au joueur 1 de choisir une case.
     puts "#{@player1.name} c'est ton tour de jouer, choisi une case :"
     print '> '
 
+    # Le "gets.chomp" récupère le choix et la ligne suivante applique le choix sur la string.
     i = gets.chomp
     @@array[i.to_i] = 'X'.blue
 
@@ -84,11 +88,11 @@ class Game < Board
     puts bottom_middle = "  #{@@array[7]}  |  #{@@array[8]}  |  #{@@array[9]}  "
     puts bottom_bottom = '     |     |     '
 
+    # Appelle la fonction win_condition pour vérifier si le tour est gagnant.
     return puts "#{@player1.name} à gagné ! 🎉" if win_condition == true
 
-    return puts "Match nul" if equality_condition == true
-
     i = 0
+    # On demande au joueur 2 de choisir une case.
     puts "#{@player2.name} c'est ton tour de jouer, choisi une case :"
     print '> '
 
@@ -107,12 +111,11 @@ class Game < Board
 
     return puts "#{@player2.name} à gagné ! 🎉" if win_condition == true
 
-    return puts "Match nul" if equality_condition == true
-
     turn
   end
 end
 
+# La méthode perform permet de lancer le programme dans un ordre précis.
 def perform
   game = Game.new
   game.go
