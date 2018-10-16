@@ -25,7 +25,6 @@ class Player
     @player_value = player_value
     @win = win = false
   end
-
 end
 
 class Game < Board
@@ -34,7 +33,7 @@ class Game < Board
   @@array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]   
   end
 
-  def go
+  def go 
     # TO DO : lance la partie
     puts "Joueur 1 écrit ton nom"
     @player1 = Player.new(gets.chomp, "X")
@@ -42,7 +41,6 @@ class Game < Board
     puts "Joueur 2 écrit ton nom"
     @player2 = Player.new(gets.chomp, "O")
     puts "#{@player2.name} Tu joue le #{@player2.player_value}"
-    
   end
 
   def win_condition
@@ -62,7 +60,7 @@ class Game < Board
   #TO DO : affiche le plateau, demande au joueur il joue quoi, vérifie si un joueur a gagné, passe au joueur suivant si la partie n'est pas finie
 
     i = 0
-    puts "tour du joueur 1"
+    puts "tour de #{@player1.name}"
 
     i = gets.chomp
     @@array[i.to_i] = "X"
@@ -77,10 +75,10 @@ class Game < Board
     puts bottom_middle = "  #{@@array[7]}  |  #{@@array[8]}  |  #{@@array[9]}  "
     puts bottom_bottom = "     |     |     "
 
-	return puts "p2" if win_condition == true
+	  return puts "#{@player1.name} à gagné" if win_condition == true
 
     i = 0
-    puts "Tour du joueur 2"
+    puts "Tour de #{@player2.name}"
     i = gets.chomp
     @@array[i.to_i] = "O"
 
@@ -94,13 +92,14 @@ class Game < Board
     puts bottom_middle = "  #{@@array[7]}  |  #{@@array[8]}  |  #{@@array[9]}  "
     puts bottom_bottom = "     |     |     "
 
-    return puts "p1" if win_condition == true
+    return puts "#{@player2.name} à gagné" if win_condition == true
 
     turn
   end
 end
 
 
-Game.new.go
+game = Game.new
+game.go
 Board.new.initial_board
-Game.new.turn
+game.turn
