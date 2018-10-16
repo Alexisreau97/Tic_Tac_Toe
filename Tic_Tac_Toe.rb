@@ -25,7 +25,7 @@ class Player
   attr_writer :win
 
   def initialize(name, player_value)
-    @name = name
+    @name = name.capitalize
     @player_value = player_value
     @win = win = false
   end
@@ -40,9 +40,11 @@ class Game < Board
   def go 
     # TO DO : lance la partie
     puts "Joueur 1 écrit ton nom"
+    print "> "
     @player1 = Player.new(gets.chomp, "X".blue)
     puts "#{@player1.name} Tu joue la #{@player1.player_value}" 
     puts "Joueur 2 écrit ton nom"
+    print "> "
     @player2 = Player.new(gets.chomp, "O".red)
     puts "#{@player2.name} Tu joue le #{@player2.player_value}"
   end
@@ -62,7 +64,8 @@ class Game < Board
   #TO DO : affiche le plateau, demande au joueur il joue quoi, vérifie si un joueur a gagné, passe au joueur suivant si la partie n'est pas finie
 
     i = 0
-    puts "tour de #{@player1.name}"
+    puts "#{@player1.name} c'est ton tour de jouer, choisi une case"
+    print "> "
 
     i = gets.chomp
     @@array[i.to_i] = "X".blue
@@ -77,10 +80,12 @@ class Game < Board
     puts bottom_middle = "  #{@@array[7]}  |  #{@@array[8]}  |  #{@@array[9]}  "
     puts bottom_bottom = "     |     |     "
 
-	  return puts "#{@player1.name} à gagné" if win_condition == true
+	  return puts "#{@player1.name} à gagné ! 🎉" if win_condition == true
 
     i = 0
-    puts "Tour de #{@player2.name}"
+    puts "#{@player2.name} c'est ton tour de jouer, choisi une case"
+    print "> "
+
     i = gets.chomp
     @@array[i.to_i] = "O".red
 
@@ -94,7 +99,7 @@ class Game < Board
     puts bottom_middle = "  #{@@array[7]}  |  #{@@array[8]}  |  #{@@array[9]}  "
     puts bottom_bottom = "     |     |     "
 
-    return puts "#{@player2.name} à gagné" if win_condition == true
+    return puts "#{@player2.name} à gagné ! 🎉" if win_condition == true
 
     turn
   end
@@ -105,8 +110,8 @@ def perform
   game.go
   Board.new.initial_board
   game.turn
-  puts "voulez-vous rejouer ? (Y/N)"
-  return perform if gets.chomp == "Y"
+  puts "voulez-vous rejouer ? (oui/non)"
+  return perform if gets.chomp == "oui"
 end
 
 perform
